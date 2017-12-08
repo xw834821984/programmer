@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">Programmer</string>
+
+    <string name="fa_galss">&#xe6b5;</string>
+
 </resources>

@@ -1,14 +1,14 @@
 package com.xw.programmer;
 
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
+import com.xw.programmer_nucleus.activities.ProxyActivitie;
+import com.xw.programmer_nucleus.delegetes.LatteDelegate;
 
-public class Programmer extends AppCompatActivity {
+public class Programmer extends ProxyActivitie {
+
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_programmer);
-        savedInstanceState.clear();
+    public LatteDelegate setRootDelegate() {
+        return new ExampleDelegate();
     }
+
 }

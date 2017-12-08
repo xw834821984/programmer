@@ -2,6 +2,9 @@ package com.xw.programmer;
 
 import android.app.Application;
 
+import com.joanzapata.iconify.fonts.FontAwesomeModule;
+import com.xw.programmer.ec.icon.FontEcModule;
+import com.xw.programmer.util.AlertToast;
 import com.xw.programmer_nucleus.app.Latte;
 
 /**
@@ -15,8 +18,12 @@ public class ExampleApp extends Application {
     public void onCreate() {
         super.onCreate();
         Latte.init(this)
-                .withApiHost("http://127.0.0.1/")
+                .withIcon(new FontAwesomeModule())
+                .withIcon(new FontEcModule())
+               .withApiHost("http://127.0.0.1/")
                 .configure();
+        //初始化吐司工具
+        AlertToast.init(this);
     }
 
 }
