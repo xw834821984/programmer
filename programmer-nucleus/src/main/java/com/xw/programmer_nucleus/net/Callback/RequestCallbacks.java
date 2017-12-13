@@ -46,11 +46,6 @@ public class RequestCallbacks implements Callback<String> {
         }
         stopLoading();
 
-
-
-
-        stopLoading();
-
     }
 
     @Override
