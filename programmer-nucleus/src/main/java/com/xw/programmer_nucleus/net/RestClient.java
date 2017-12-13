@@ -1,10 +1,14 @@
 package com.xw.programmer_nucleus.net;
 
+import android.content.Context;
+
 import com.xw.programmer_nucleus.net.Callback.IError;
 import com.xw.programmer_nucleus.net.Callback.IFailure;
 import com.xw.programmer_nucleus.net.Callback.IRequest;
 import com.xw.programmer_nucleus.net.Callback.ISuccess;
 import com.xw.programmer_nucleus.net.Callback.RequestCallbacks;
+import com.xw.programmer_nucleus.ui.LatteLoader;
+import com.xw.programmer_nucleus.ui.LoaderStyle;
 
 import java.util.Map;
 import java.util.WeakHashMap;
@@ -38,6 +42,8 @@ public class RestClient {
     private final IFailure FAILURE;
     private final IError ERROR;
     private final RequestBody BODY;
+    private final Context CONTEXT;
+    private final LoaderStyle  LOADER_STYLE;
 
     public RestClient(String url,
                       Map<String, Object> params,
@@ -45,7 +51,9 @@ public class RestClient {
                       ISuccess success,
                       IFailure failure,
                       IError error,
-                      RequestBody body) {
+                      RequestBody body,
+                      LoaderStyle loaderStyle ,
+                      Context context) {
         this.URl = url;
         PARAMS.putAll(params);
         this.REQUEST = request;
@@ -53,6 +61,8 @@ public class RestClient {
         this.FAILURE = failure;
         this.ERROR = error;
         this.BODY = body;
+        this.CONTEXT = context;
+        this.LOADER_STYLE = loaderStyle;
     }
 
     public static RestClientBuilder builder() {
@@ -62,8 +72,14 @@ public class RestClient {
     private void request(HttpMethod method) {
         final RestService service = RestCreator.getRestService();
         Call<String> call = null;
+
         if (REQUEST != null) {
             REQUEST.onRequestStart();
+        }
+
+        if (LOADER_STYLE !=null){
+
+            LatteLoader.showLoading(CONTEXT,LOADER_STYLE);
         }
         switch (method) {
 
@@ -89,26 +105,30 @@ public class RestClient {
     }
 
 
-    private Callback<String> getRequstCallback(){
-        return  new RequestCallbacks(
+    private Callback<String> getRequstCallback() {
+        return new RequestCallbacks(
                 REQUEST,
                 SUCCESS,
                 FAILURE,
-                ERROR
+                ERROR,
+                LOADER_STYLE
         );
     }
 
 
-    public final void get(){
+    public final void get() {
         request(HttpMethod.GET);
     }
-    public final void post(){
+
+    public final void post() {
         request(HttpMethod.POST);
     }
-    public final void put(){
+
+    public final void put() {
         request(HttpMethod.PUT);
     }
-    public final void delete(){
+
+    public final void delete() {
         request(HttpMethod.DELETE);
     }
 }
