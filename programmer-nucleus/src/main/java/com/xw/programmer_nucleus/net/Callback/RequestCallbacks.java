@@ -23,7 +23,7 @@ public class RequestCallbacks implements Callback<String> {
     private final LoaderStyle LOADER_STYLE;
     private static final Handler HANDLER = new Handler();
 
-    public RequestCallbacks(IRequest request, ISuccess success, IFailure failure, IError error, LoaderStyle loaderStyle) {
+    public RequestCallbacks(IRequest request, ISuccess success, IFailure failure, IError error,LoaderStyle loaderStyle) {
         this.REQUEST = request;
         this.SUCCESS = success;
         this.FAILURE = failure;
@@ -45,7 +45,6 @@ public class RequestCallbacks implements Callback<String> {
             }
         }
         stopLoading();
-
     }
 
     @Override
@@ -60,6 +59,7 @@ public class RequestCallbacks implements Callback<String> {
         stopLoading();
     }
 
+
     private void stopLoading() {
         if (LOADER_STYLE != null) {
             HANDLER.postDelayed(new Runnable() {
@@ -70,5 +70,4 @@ public class RequestCallbacks implements Callback<String> {
             }, 3000);
         }
     }
-
 }

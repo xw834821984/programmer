@@ -8,5 +8,5 @@ package com.xw.programmer_nucleus.net.Callback;
 
  public interface ISuccess {
 
- void onSuccess (String response);
+ void onSuccess(String response);
 }

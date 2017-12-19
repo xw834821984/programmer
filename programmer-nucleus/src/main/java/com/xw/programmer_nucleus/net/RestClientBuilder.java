@@ -21,7 +21,6 @@ import okhttp3.RequestBody;
  */
 
 public class RestClientBuilder {
-
     private String mUrl = null;
     private static Map<String, Object> PARAMS = RestCreator.getParams();
     private IRequest mIRequest = null;
@@ -32,6 +31,9 @@ public class RestClientBuilder {
     private Context mContext = null;
     private LoaderStyle mLoaderStyle = null;
     private File mFile = null;
+    private String mDownloadDir = null;
+    private String mExtension = null;
+    private String mName = null;
 
 
     RestClientBuilder() {
@@ -52,21 +54,6 @@ public class RestClientBuilder {
         this.PARAMS.put(key, value);
         return this;
     }
-
-    public final RestClientBuilder file(File file) {
-
-       this.mFile = file;
-        return this;
-    }
-
-
-    public final RestClientBuilder file(String file) {
-
-        this.mFile = new File(file);
-        return this;
-    }
-
-
 
     public final RestClientBuilder raw(String raw) {
         this.mBody = RequestBody.create(MediaType.parse("application/json;charset=UTF-8"), raw);
@@ -95,21 +82,21 @@ public class RestClientBuilder {
         return this;
     }
 
+
     public final RestClientBuilder loader(Context context, LoaderStyle style) {
-        this.mLoaderStyle = style;
         this.mContext = context;
+        this.mLoaderStyle = style;
         return this;
     }
     public final RestClientBuilder loader(Context context) {
 
         this.mContext = context;
         this.mLoaderStyle = LoaderStyle.BallSpinFadeLoaderIndicator;
-       return this;
+        return this;
     }
 
-
     public final RestClient build() {
-        return new RestClient(mUrl, PARAMS, mIRequest, mISuccess, mIFailure, mIError, mBody,mFile, mLoaderStyle, mContext);
+        return new RestClient(mUrl, PARAMS, mIRequest, mISuccess, mIFailure, mIError, mBody,mLoaderStyle,mFile,mContext);
     }
 
 

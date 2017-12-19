@@ -21,6 +21,7 @@ public class ExampleApp extends Application {
                 .withIcon(new FontAwesomeModule())
                 .withIcon(new FontEcModule())
                .withApiHost("http://127.0.0.1/")
+
                 .configure();
         //初始化吐司工具
         AlertToast.init(this);
