@@ -7,6 +7,7 @@ import com.xw.programmer_nucleus.net.Callback.IFailure;
 import com.xw.programmer_nucleus.net.Callback.IRequest;
 import com.xw.programmer_nucleus.net.Callback.ISuccess;
 import com.xw.programmer_nucleus.net.Callback.RequestCallbacks;
+import com.xw.programmer_nucleus.net.download.DownloadHandler;
 import com.xw.programmer_nucleus.ui.LatteLoader;
 import com.xw.programmer_nucleus.ui.LoaderStyle;
 
@@ -40,6 +41,9 @@ public class RestClient {
     private final String URL;
     private static final WeakHashMap<String, Object> PARAMS = RestCreator.getParams();
     private final IRequest REQUEST;
+    private final String DOWNLOAD_DIR;
+    private final String EXTENSION;
+    private final String NAME;
     private final ISuccess SUCCESS;
     private final IFailure FAILURE;
     private final IError ERROR;
@@ -50,6 +54,9 @@ public class RestClient {
 
     public RestClient(String url,
                       Map<String, Object> params,
+                      String downloadDir,
+                      String extension,
+                      String name,
                       IRequest request,
                       ISuccess success,
                       IFailure failure,
@@ -60,6 +67,9 @@ public class RestClient {
                       Context context) {
         this.URL = url;
         PARAMS.putAll(params);
+        this.DOWNLOAD_DIR = downloadDir;
+        this.EXTENSION = extension;
+        this.NAME = name;
         this.REQUEST = request;
         this.SUCCESS = success;
         this.FAILURE = failure;
@@ -163,5 +173,11 @@ public class RestClient {
 
     public final void delete() {
         request(HttpMethod.DELETE);
+    }
+    public final void upload(){
+        request(HttpMethod.UPLOAD);
+    }
+    public final void download(){
+        new DownloadHandler(URL,REQUEST,DOWNLOAD_DIR,EXTENSION,NAME,SUCCESS,FAILURE,ERROR).handleDownload();
     }
 }
