@@ -55,6 +55,18 @@ public class RestClientBuilder {
         return this;
     }
 
+    public final RestClientBuilder file(File file) {
+
+        this.mFile = file;
+        return this;
+    }
+
+    public final RestClientBuilder file(String file) {
+
+        this.mFile = new File(file);
+        return this;
+    }
+
     public final RestClientBuilder raw(String raw) {
         this.mBody = RequestBody.create(MediaType.parse("application/json;charset=UTF-8"), raw);
         return this;
