@@ -2,8 +2,8 @@ package com.xw.programmer_nucleus.net.Callback;
 
 import android.os.Handler;
 
-import com.xw.programmer_nucleus.ui.LatteLoader;
-import com.xw.programmer_nucleus.ui.LoaderStyle;
+import com.xw.programmer_nucleus.ui.loader.LatteLoader;
+import com.xw.programmer_nucleus.ui.loader.LoaderStyle;
 
 import retrofit2.Call;
 import retrofit2.Callback;

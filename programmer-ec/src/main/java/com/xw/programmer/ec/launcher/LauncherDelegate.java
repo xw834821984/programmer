@@ -20,7 +20,7 @@ import butterknife.OnClick;
 /**
  * Created by nazi on
  * date： 2017/12/21
- * 倒计时跳转
+ * 启动图
  */
 
 public class LauncherDelegate extends LatteDelegate implements ITimerListener {
@@ -43,6 +43,11 @@ public class LauncherDelegate extends LatteDelegate implements ITimerListener {
         }*/
     }
 
+    @Override
+    public void onBindview(@Nullable Bundle savedInstanceState, View rootView) {
+        initTimer();
+    }
+
     private void initTimer() {
 
         mTimer = new Timer();
@@ -56,10 +61,6 @@ public class LauncherDelegate extends LatteDelegate implements ITimerListener {
         return R.layout.dellegate_launcher;
     }
 
-    @Override
-    public void onBindview(@Nullable Bundle savedInstanceState, View rootView) {
-        initTimer();
-    }
 
     @Override
     public void onTimer() {

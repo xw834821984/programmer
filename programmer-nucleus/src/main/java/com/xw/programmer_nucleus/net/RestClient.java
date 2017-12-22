@@ -8,8 +8,8 @@ import com.xw.programmer_nucleus.net.Callback.IRequest;
 import com.xw.programmer_nucleus.net.Callback.ISuccess;
 import com.xw.programmer_nucleus.net.Callback.RequestCallbacks;
 import com.xw.programmer_nucleus.net.download.DownloadHandler;
-import com.xw.programmer_nucleus.ui.LatteLoader;
-import com.xw.programmer_nucleus.ui.LoaderStyle;
+import com.xw.programmer_nucleus.ui.loader.LatteLoader;
+import com.xw.programmer_nucleus.ui.loader.LoaderStyle;
 
 import java.io.File;
 import java.util.Map;

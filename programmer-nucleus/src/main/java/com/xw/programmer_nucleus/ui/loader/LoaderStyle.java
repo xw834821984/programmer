@@ -1,4 +1,4 @@
-package com.xw.programmer_nucleus.ui;
+package com.xw.programmer_nucleus.ui.loader;
 
 /**
  * Created by nazi on

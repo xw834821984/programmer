@@ -6,7 +6,7 @@ import com.xw.programmer_nucleus.net.Callback.IError;
 import com.xw.programmer_nucleus.net.Callback.IFailure;
 import com.xw.programmer_nucleus.net.Callback.IRequest;
 import com.xw.programmer_nucleus.net.Callback.ISuccess;
-import com.xw.programmer_nucleus.ui.LoaderStyle;
+import com.xw.programmer_nucleus.ui.loader.LoaderStyle;
 
 import java.io.File;
 import java.util.Map;
