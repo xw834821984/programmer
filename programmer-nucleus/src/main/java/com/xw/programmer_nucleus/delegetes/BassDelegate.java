@@ -6,6 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.xw.programmer_nucleus.activities.ProxyActivitie;
+
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import me.yokeyword.fragmentation_swipeback.SwipeBackFragment;
@@ -29,27 +31,30 @@ public abstract class BassDelegate extends SwipeBackFragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View rootView = null;
+        final View rootView;
         if (setLayout() instanceof Integer) {
-            rootView = inflater.inflate((Integer) setLayout(), container, false);
-
+            rootView = inflater.inflate((int) setLayout(), container, false);
         } else if (setLayout() instanceof View) {
             rootView = (View) setLayout();
-        }
-        if (rootView != null) {
+        } else {
 
-            mUnbinder = ButterKnife.bind(this, rootView);
-            onBindview(savedInstanceState, rootView);
+            throw new ClassCastException("setLayout()类型必须是int或视图");
+
         }
+        mUnbinder = ButterKnife.bind(this, rootView);
+        onBindview(savedInstanceState, rootView);
 
 
         return rootView;
     }
 
+    public final ProxyActivitie getProxyActivity(){
+        return (ProxyActivitie) _mActivity;
+    }
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        if (mUnbinder !=null){
+        if (mUnbinder != null) {
             //解除绑定
             mUnbinder.unbind();
         }
