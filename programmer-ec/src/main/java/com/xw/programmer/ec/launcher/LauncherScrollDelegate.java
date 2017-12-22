@@ -9,12 +9,15 @@ import com.bigkoo.convenientbanner.listener.OnItemClickListener;
 import com.xw.programmer.ec.R;
 import com.xw.programmer_nucleus.delegetes.LatteDelegate;
 import com.xw.programmer_nucleus.ui.launcher.LauncherHolderCreator;
+import com.xw.programmer_nucleus.ui.launcher.ScrollLauncherTag;
+import com.xw.programmer_nucleus.util.storage.LattePreference;
 
 import java.util.ArrayList;
 
 /**
  * Created by nazi on
  * date： 2017/12/22
+ * 启动页
  *
  */
 
@@ -52,5 +55,11 @@ public class LauncherScrollDelegate extends LatteDelegate implements OnItemClick
     @Override
     public void onItemClick(int position) {
 
+        //如果点击的是最后一个
+        if (position == INTEGERS.size() -1){
+            LattePreference.setAppFlag(ScrollLauncherTag.HAS_FIST_LAUNCHER_APP.name(),true);
+            //检查用户是否已经登录
+
+        }
     }
 }

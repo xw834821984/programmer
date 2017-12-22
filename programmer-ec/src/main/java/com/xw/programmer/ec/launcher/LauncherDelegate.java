@@ -8,6 +8,8 @@ import android.view.View;
 import com.xw.programmer.ec.R;
 import com.xw.programmer.ec.R2;
 import com.xw.programmer_nucleus.delegetes.LatteDelegate;
+import com.xw.programmer_nucleus.ui.launcher.ScrollLauncherTag;
+import com.xw.programmer_nucleus.util.storage.LattePreference;
 import com.xw.programmer_nucleus.util.timer.BaseTimerTask;
 import com.xw.programmer_nucleus.util.timer.ITimerListener;
 
@@ -20,7 +22,7 @@ import butterknife.OnClick;
 /**
  * Created by nazi on
  * date： 2017/12/21
- * 启动图
+ * 倒计时跳转
  */
 
 public class LauncherDelegate extends LatteDelegate implements ITimerListener {
@@ -36,11 +38,11 @@ public class LauncherDelegate extends LatteDelegate implements ITimerListener {
     @OnClick(R2.id.tv_launcher_timer)
     void onClickTimerView() {
 
-        /*if (mTimer != null) {
+        if (mTimer != null) {
             mTimer.cancel();
             mTimer = null;
-            //  checkIsShowScroll();
-        }*/
+             checkIsShowScroll();
+        }
     }
 
     @Override
@@ -61,6 +63,16 @@ public class LauncherDelegate extends LatteDelegate implements ITimerListener {
         return R.layout.dellegate_launcher;
     }
 
+    //判断是否显示滑动启动页
+    private  void checkIsShowScroll(){
+
+        if(!LattePreference.getAppFlag(ScrollLauncherTag.HAS_FIST_LAUNCHER_APP.name())){
+            start(new LauncherScrollDelegate(),SINGLETASK);
+        }else {
+            //检查用户是否登录
+        }
+    }
+
 
     @Override
     public void onTimer() {
@@ -74,6 +86,7 @@ public class LauncherDelegate extends LatteDelegate implements ITimerListener {
                         if (mTvTimer != null) {
                             mTimer.cancel();
                             mTimer = null;
+                            checkIsShowScroll();
                         }
                     }
                 }
