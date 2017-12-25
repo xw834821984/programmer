@@ -52,6 +52,12 @@ public class SignUpDelegate extends LatteDelegate {
         }
     }
 
+
+    @OnClick(R2.id.tv_link_sign_in)
+    void onClickLink(){
+        start(new SignInDelegate());
+    }
+
     private boolean checkForm() {
         final String name = mName.getText().toString();
         final String email = mEmail.getText().toString();
