@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
 
-import com.xw.programmer.ec.launcher.LauncherDelegate;
+import com.xw.programmer.ec.sign.SignUpDelegate;
 import com.xw.programmer_nucleus.activities.ProxyActivitie;
 import com.xw.programmer_nucleus.delegetes.LatteDelegate;
 
@@ -22,7 +22,7 @@ public class Programmer extends ProxyActivitie {
 
     @Override
     public LatteDelegate setRootDelegate() {
-        return new LauncherDelegate();
+        return new SignUpDelegate();
     }
 
 }
