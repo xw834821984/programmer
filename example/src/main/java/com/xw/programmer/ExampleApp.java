@@ -12,6 +12,7 @@ import com.xw.programmer_nucleus.net.interceptors.DebugInterceptor;
 /**
  * Created by nazi on
  * date： 2017/12/1
+ *
  */
 
 public class ExampleApp extends Application {
