@@ -3,6 +3,7 @@ package com.xw.programmer;
 import android.app.Application;
 
 import com.joanzapata.iconify.fonts.FontAwesomeModule;
+import com.xw.programmer.ec.database.DatabaseManager;
 import com.xw.programmer.ec.icon.FontEcModule;
 import com.xw.programmer.util.AlertToast;
 import com.xw.programmer_nucleus.app.Latte;
@@ -24,6 +25,8 @@ public class ExampleApp extends Application {
                .withApiHost("http://127.0.0.1/")
                 .withInterceptor(new DebugInterceptor("index",R.raw.test))
                 .configure();
+
+        DatabaseManager.getInstance().init(this);
         //初始化吐司工具
         AlertToast.init(this);
     }

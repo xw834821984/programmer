@@ -1,5 +1,6 @@
 package com.xw.programmer.ec.sign;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputEditText;
@@ -10,6 +11,9 @@ import android.widget.Toast;
 import com.xw.programmer.ec.R;
 import com.xw.programmer.ec.R2;
 import com.xw.programmer_nucleus.delegetes.LatteDelegate;
+import com.xw.programmer_nucleus.net.Callback.ISuccess;
+import com.xw.programmer_nucleus.net.RestClient;
+import com.xw.programmer_nucleus.util.log.LatterLogger;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -33,22 +37,36 @@ public class SignUpDelegate extends LatteDelegate {
     @BindView(R2.id.edit_sign_up_re_password)
     TextInputEditText mRePassword = null;
 
+    private ISignListener mISignListener = null;
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        if(activity instanceof  ISignListener){
+            mISignListener = (ISignListener) activity;
+
+        }
+    }
+
     @OnClick(R2.id.btn_sign_up)
     void onClickSignUp(){
         if (checkForm()){
-           /* RestClient.builder()
-                    .url("sign_up")
-                    .params("","")
+            RestClient.builder()
+                    //.url("sign_up")
+                    .params("name","111")
+                    .params("email","123@123.com")
+                    .params("phone","12345612345")
+                    .params("pawssword",123123)
                     .success(new ISuccess() {
                         @Override
                         public void onSuccess(String response) {
-
+                            LatterLogger.json("USER_PROFILE",response);
+                            SignHandler.onSignUp(response,mISignListener);
                         }
                     })
                     .build()
                     .pst();
-            */
-            Toast.makeText(getContext(),"验证通过",Toast.LENGTH_SHORT).show();
+
+           Toast.makeText(getContext(),mName.getText().toString(),Toast.LENGTH_LONG).show();
         }
     }
 
