@@ -5,9 +5,9 @@ import android.app.Application;
 import com.joanzapata.iconify.fonts.FontAwesomeModule;
 import com.xw.programmer.ec.database.DatabaseManager;
 import com.xw.programmer.ec.icon.FontEcModule;
-import com.xw.programmer.util.AlertToast;
 import com.xw.programmer_nucleus.app.Latte;
 import com.xw.programmer_nucleus.net.interceptors.DebugInterceptor;
+import com.xw.programmer_nucleus.util.AlertToast;
 
 /**
  * Created by nazi on
@@ -30,6 +30,7 @@ public class ExampleApp extends Application {
         DatabaseManager.getInstance().init(this);
         //初始化吐司工具
         AlertToast.init(this);
+
     }
 
 }

@@ -24,6 +24,7 @@ public class Programmer extends ProxyActivitie implements
         if (actionBar!=null){
             actionBar.hide();
         }
+
     }
 
     @Override
