@@ -6,5 +6,5 @@ package com.xw.programmer_nucleus.ui.launcher;
  */
 
 public enum  ScrollLauncherTag {
-    HAS_FIST_LAUNCHER_APP
+    HAS_FIRST_LAUNCHER_APP
 }

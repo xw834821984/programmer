@@ -54,7 +54,8 @@ public class SignInDelegate extends LatteDelegate {
                         }
                     })
                     .build()
-                    .pst();
+                    .post();
+
            //  Toast.makeText(getContext(),"邮箱"+mEmail.getText().toString(),Toast.LENGTH_SHORT).show();
         }
     }

@@ -38,8 +38,8 @@ public class RestClient {
     * */
 
 
-    private final String URL;
     private static final WeakHashMap<String, Object> PARAMS = RestCreator.getParams();
+    private final String URL;
     private final IRequest REQUEST;
     private final String DOWNLOAD_DIR;
     private final String EXTENSION;
@@ -48,23 +48,23 @@ public class RestClient {
     private final IFailure FAILURE;
     private final IError ERROR;
     private final RequestBody BODY;
-    private final Context CONTEXT;
-    private final File FILE;
     private final LoaderStyle LOADER_STYLE;
+    private final File FILE;
+    private final Context CONTEXT;
 
-    public RestClient(String url,
-                      Map<String, Object> params,
-                      String downloadDir,
-                      String extension,
-                      String name,
-                      IRequest request,
-                      ISuccess success,
-                      IFailure failure,
-                      IError error,
-                      RequestBody body,
-                      LoaderStyle loaderStyle,
-                      File file,
-                      Context context) {
+    RestClient(String url,
+               Map<String, Object> params,
+               String downloadDir,
+               String extension,
+               String name,
+               IRequest request,
+               ISuccess success,
+               IFailure failure,
+               IError error,
+               RequestBody body,
+               File file,
+               Context context,
+               LoaderStyle loaderStyle) {
         this.URL = url;
         PARAMS.putAll(params);
         this.DOWNLOAD_DIR = downloadDir;
@@ -75,8 +75,8 @@ public class RestClient {
         this.FAILURE = failure;
         this.ERROR = error;
         this.BODY = body;
-        this.CONTEXT = context;
         this.FILE = file;
+        this.CONTEXT = context;
         this.LOADER_STYLE = loaderStyle;
     }
 
@@ -87,16 +87,16 @@ public class RestClient {
     private void request(HttpMethod method) {
         final RestService service = RestCreator.getRestService();
         Call<String> call = null;
+
         if (REQUEST != null) {
             REQUEST.onRequestStart();
         }
+
         if (LOADER_STYLE != null) {
             LatteLoader.showLoading(CONTEXT, LOADER_STYLE);
         }
 
-
         switch (method) {
-
             case GET:
                 call = service.get(URL, PARAMS);
                 break;
@@ -119,19 +119,19 @@ public class RestClient {
                 final RequestBody requestBody =
                         RequestBody.create(MediaType.parse(MultipartBody.FORM.toString()), FILE);
                 final MultipartBody.Part body =
-                        MultipartBody.Part.createFormData("file", FILE.getName(),requestBody);
-                call = RestCreator.getRestService().upload(URL,body);
+                        MultipartBody.Part.createFormData("file", FILE.getName(), requestBody);
+                call = service.upload(URL, body);
+                break;
             default:
                 break;
         }
-        if (call != null) {
-            call.enqueue(getRequstCallback());
-        }
 
+        if (call != null) {
+            call.enqueue(getRequestCallback());
+        }
     }
 
-
-    private Callback<String> getRequstCallback() {
+    private Callback<String> getRequestCallback() {
         return new RequestCallbacks(
                 REQUEST,
                 SUCCESS,
@@ -141,43 +141,43 @@ public class RestClient {
         );
     }
 
-
     public final void get() {
         request(HttpMethod.GET);
     }
 
-    public final void pst() {
+    public final void post() {
         if (BODY == null) {
             request(HttpMethod.POST);
         } else {
             if (!PARAMS.isEmpty()) {
-                throw new RuntimeException("params must be null");
+                throw new RuntimeException("params must be null!");
             }
             request(HttpMethod.POST_RAW);
         }
-
     }
-
 
     public final void put() {
         if (BODY == null) {
             request(HttpMethod.PUT);
         } else {
             if (!PARAMS.isEmpty()) {
-                throw new RuntimeException("params must be null");
+                throw new RuntimeException("params must be null!");
             }
             request(HttpMethod.PUT_RAW);
         }
-
     }
 
     public final void delete() {
         request(HttpMethod.DELETE);
     }
-    public final void upload(){
+
+    public final void upload() {
         request(HttpMethod.UPLOAD);
     }
-    public final void download(){
-        new DownloadHandler(URL,REQUEST,DOWNLOAD_DIR,EXTENSION,NAME,SUCCESS,FAILURE,ERROR).handleDownload();
+
+    public final void download() {
+        new DownloadHandler(URL, REQUEST, DOWNLOAD_DIR, EXTENSION, NAME,
+                SUCCESS, FAILURE, ERROR)
+                .handleDownload();
     }
 }

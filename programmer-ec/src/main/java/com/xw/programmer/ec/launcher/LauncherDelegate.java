@@ -13,8 +13,6 @@ import com.xw.programmer_nucleus.app.IUserChecker;
 import com.xw.programmer_nucleus.delegetes.LatteDelegate;
 import com.xw.programmer_nucleus.ui.launcher.ILauncherListener;
 import com.xw.programmer_nucleus.ui.launcher.OnLauncherFinishTag;
-import com.xw.programmer_nucleus.ui.launcher.ScrollLauncherTag;
-import com.xw.programmer_nucleus.util.storage.LattePreference;
 import com.xw.programmer_nucleus.util.timer.BaseTimerTask;
 import com.xw.programmer_nucleus.util.timer.ITimerListener;
 
@@ -32,22 +30,23 @@ import butterknife.OnClick;
 
 public class LauncherDelegate extends LatteDelegate implements ITimerListener {
 
-    //@BindView(R2.id.tv_launcher_timer)
+
     @BindView(R2.id.tv_launcher_timer)
     AppCompatTextView mTvTimer = null;
     private Timer mTimer = null;
 
-    private int mCount = 3;
+    private int mCount = 5;
     private ILauncherListener mILauncherListener = null;
 
-    //  @OnClick(R2.id.tv_launcher_timer)
     @OnClick(R2.id.tv_launcher_timer)
+
     void onClickTimerView() {
 
         if (mTimer != null) {
             mTimer.cancel();
             mTimer = null;
              checkIsShowScroll();
+
         }
     }
 
@@ -75,15 +74,19 @@ public class LauncherDelegate extends LatteDelegate implements ITimerListener {
 
     @Override
     public Object setLayout() {
-        return R.layout.dellegate_launcher;
+      return R.layout.dellegate_launcher;
+
+
     }
 
     //判断是否显示滑动启动页
     private  void checkIsShowScroll(){
 
-        if(!LattePreference.getAppFlag(ScrollLauncherTag.HAS_FIST_LAUNCHER_APP.name())){
+
+     /*   if(!LattePreference.getAppFlag(ScrollLauncherTag.HAS_FIRST_LAUNCHER_APP.name())){
+
             start(new LauncherScrollDelegate(),SINGLETASK);
-        }else {
+        }else {*/
             //检查用户是否登录
             AccountManager.checkAccount(new IUserChecker() {
                 @Override
@@ -102,7 +105,7 @@ public class LauncherDelegate extends LatteDelegate implements ITimerListener {
                 }
             });
         }
-    }
+    //}
 
 
     @Override

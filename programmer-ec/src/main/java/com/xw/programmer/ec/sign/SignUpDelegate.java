@@ -64,7 +64,7 @@ public class SignUpDelegate extends LatteDelegate {
                         }
                     })
                     .build()
-                    .pst();
+                    .post();
 
            Toast.makeText(getContext(),mName.getText().toString(),Toast.LENGTH_LONG).show();
         }

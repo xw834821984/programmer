@@ -34,6 +34,8 @@ public abstract class ProxyActivitie extends SupportActivity {
             setContentView(container);
             if (savedInstanceState == null) {
                 loadRootFragment(R.id.delegate_container, setRootDelegate());
+
+
             }
         }
 
