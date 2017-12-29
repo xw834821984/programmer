@@ -13,6 +13,8 @@ import com.xw.programmer_nucleus.app.IUserChecker;
 import com.xw.programmer_nucleus.delegetes.LatteDelegate;
 import com.xw.programmer_nucleus.ui.launcher.ILauncherListener;
 import com.xw.programmer_nucleus.ui.launcher.OnLauncherFinishTag;
+import com.xw.programmer_nucleus.ui.launcher.ScrollLauncherTag;
+import com.xw.programmer_nucleus.util.storage.LattePreference;
 import com.xw.programmer_nucleus.util.timer.BaseTimerTask;
 import com.xw.programmer_nucleus.util.timer.ITimerListener;
 
@@ -83,10 +85,10 @@ public class LauncherDelegate extends LatteDelegate implements ITimerListener {
     private  void checkIsShowScroll(){
 
 
-     /*   if(!LattePreference.getAppFlag(ScrollLauncherTag.HAS_FIRST_LAUNCHER_APP.name())){
+       if(!LattePreference.getAppFlag(ScrollLauncherTag.HAS_FIRST_LAUNCHER_APP.name())){
 
             start(new LauncherScrollDelegate(),SINGLETASK);
-        }else {*/
+        }else {
             //检查用户是否登录
             AccountManager.checkAccount(new IUserChecker() {
                 @Override
@@ -105,7 +107,7 @@ public class LauncherDelegate extends LatteDelegate implements ITimerListener {
                 }
             });
         }
-    //}
+    }
 
 
     @Override

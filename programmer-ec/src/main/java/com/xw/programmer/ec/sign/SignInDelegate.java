@@ -14,6 +14,8 @@ import com.xw.programmer_nucleus.delegetes.LatteDelegate;
 import com.xw.programmer_nucleus.net.Callback.ISuccess;
 import com.xw.programmer_nucleus.net.RestClient;
 import com.xw.programmer_nucleus.util.log.LatterLogger;
+import com.xw.programmer_nucleus.wechat.LatterWeChat;
+import com.xw.programmer_nucleus.wechat.callbacks.IWeChatSignInCallback;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -61,6 +63,12 @@ public class SignInDelegate extends LatteDelegate {
     }
     @OnClick(R2.id.icon_sign_in_wechat)
     void onClickWeChat(){
+        LatterWeChat.getInstance().onSignSuccess(new IWeChatSignInCallback() {
+            @Override
+            public void onSignInSuccess(String userInfo) {
+
+            }
+        }).signIn();
             Toast.makeText(getContext(),"被点击" ,Toast.LENGTH_SHORT).show();
     }
 

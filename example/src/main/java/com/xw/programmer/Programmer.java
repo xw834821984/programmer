@@ -5,9 +5,10 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
 import android.widget.Toast;
 
-import com.xw.programmer.ec.launcher.LauncherDelegate;
 import com.xw.programmer.ec.sign.ISignListener;
+import com.xw.programmer.ec.sign.SignInDelegate;
 import com.xw.programmer_nucleus.activities.ProxyActivitie;
+import com.xw.programmer_nucleus.app.Latte;
 import com.xw.programmer_nucleus.delegetes.LatteDelegate;
 import com.xw.programmer_nucleus.ui.launcher.ILauncherListener;
 import com.xw.programmer_nucleus.ui.launcher.OnLauncherFinishTag;
@@ -24,13 +25,13 @@ public class Programmer extends ProxyActivitie implements
         if (actionBar!=null){
             actionBar.hide();
         }
-       // Latte.getConfigurator().withActivity();
+        Latte.getConfigurator().withActivity(this);
 
     }
 
     @Override
     public LatteDelegate setRootDelegate() {
-        return new LauncherDelegate();
+        return new SignInDelegate();
     }
 
     @Override
