@@ -5,8 +5,9 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
 import android.widget.Toast;
 
+import com.xw.programmer.ec.launcher.LauncherDelegate;
+import com.xw.programmer.ec.main.EcBottonDelegate;
 import com.xw.programmer.ec.sign.ISignListener;
-import com.xw.programmer.ec.sign.SignInDelegate;
 import com.xw.programmer_nucleus.activities.ProxyActivitie;
 import com.xw.programmer_nucleus.app.Latte;
 import com.xw.programmer_nucleus.delegetes.LatteDelegate;
@@ -31,7 +32,7 @@ public class Programmer extends ProxyActivitie implements
 
     @Override
     public LatteDelegate setRootDelegate() {
-        return new SignInDelegate();
+        return new LauncherDelegate();
     }
 
     @Override
@@ -48,12 +49,12 @@ public class Programmer extends ProxyActivitie implements
     public void onLauncherFinish(OnLauncherFinishTag tag) {
         switch (tag){
             case SIGNED:
-                Toast.makeText(this,"你是老大不用登陆",Toast.LENGTH_LONG).show();
-                startWithPop(new ExampleDelegate());
+                Toast.makeText(this,"老大也走登陆",Toast.LENGTH_LONG).show();
+                startWithPop(new EcBottonDelegate());
                 break;
             case NOT_SIGNED:
                 Toast.makeText(this,"你是老大不用登陆",Toast.LENGTH_LONG).show();
-                startWithPop(new ExampleDelegate());
+                startWithPop(new EcBottonDelegate());
                 break;
             default:
                 break;
