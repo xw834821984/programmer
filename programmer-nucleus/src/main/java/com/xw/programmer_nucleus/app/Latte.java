@@ -1,6 +1,7 @@
 package com.xw.programmer_nucleus.app;
 
 import android.content.Context;
+import android.os.Handler;
 
 /**
  * Created by nazi on
@@ -28,9 +29,9 @@ public final class Latte {
         return getConfiguration(ConfigKeys.APPLICATION_CONTEXT);
     }
 
-   /* public static Handler getHandler() {
+    public static Handler getHandler() {
         return getConfiguration(ConfigKeys.HANDLER);
-    }*/
+    }
 
     public static void test(){
     }

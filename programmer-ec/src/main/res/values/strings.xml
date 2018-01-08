@@ -14,4 +14,10 @@
     <string name="btn_sign_in">登陆</string>
 
 
+
+    <!--首页-->
+    <string name="et_search_view">搜索</string>
+
+
+
 </resources>
