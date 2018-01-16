@@ -49,11 +49,12 @@ public class Programmer extends ProxyActivitie implements
     public void onLauncherFinish(OnLauncherFinishTag tag) {
         switch (tag){
             case SIGNED:
-                Toast.makeText(this,"老大也走登陆",Toast.LENGTH_LONG).show();
+                Toast.makeText(this,"启动结束，登陆?",Toast.LENGTH_LONG).show();
                 startWithPop(new EcBottonDelegate());
                 break;
             case NOT_SIGNED:
-                Toast.makeText(this,"你是老大不用登陆",Toast.LENGTH_LONG).show();
+
+                Toast.makeText(this,"启动结束，还没登陆",Toast.LENGTH_LONG).show();
                 startWithPop(new EcBottonDelegate());
                 break;
             default:

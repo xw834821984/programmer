@@ -14,7 +14,7 @@ import com.xw.programmer_nucleus.app.AccountManager;
  */
 
 public class SignHandler {
-    public static void onSignIn(String response,ISignListener signListener){
+    public static void onSignIn(String response, ISignListener signListener) {
         final JSONObject profileJson = JSON.parseObject(response).getJSONObject("data");
         final long userId = profileJson.getLong("userId");
         final String name = profileJson.getString("name");
@@ -25,15 +25,13 @@ public class SignHandler {
         final UserProfile profile = new UserProfile(userId, name, avatar, gender, address);
         DatabaseManager.getInstance().getDao().insert(profile);
 
-        //保存用户状态
+        //已经注册并登录成功了
         AccountManager.setSignState(true);
-
         signListener.onSignInSuccess();
-
     }
 
 
-    public static void onSignUp(String response,ISignListener signListener){
+    public static void onSignUp(String response, ISignListener signListener) {
         final JSONObject profileJson = JSON.parseObject(response).getJSONObject("data");
         final long userId = profileJson.getLong("userId");
         final String name = profileJson.getString("name");
@@ -44,10 +42,8 @@ public class SignHandler {
         final UserProfile profile = new UserProfile(userId, name, avatar, gender, address);
         DatabaseManager.getInstance().getDao().insert(profile);
 
-        //保存用户状态
+        //已经注册并登录成功了
         AccountManager.setSignState(true);
-
         signListener.onSignUpSuccess();
-
     }
 }

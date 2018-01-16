@@ -37,7 +37,7 @@ public class LauncherDelegate extends LatteDelegate implements ITimerListener {
     AppCompatTextView mTvTimer = null;
     private Timer mTimer = null;
 
-    private int mCount = 5;
+    private int mCount = 3;
     private ILauncherListener mILauncherListener = null;
 
     @OnClick(R2.id.tv_launcher_timer)

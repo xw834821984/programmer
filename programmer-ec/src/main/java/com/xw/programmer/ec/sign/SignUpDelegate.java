@@ -6,7 +6,6 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputEditText;
 import android.util.Patterns;
 import android.view.View;
-import android.widget.Toast;
 
 import com.xw.programmer.ec.R;
 import com.xw.programmer.ec.R2;
@@ -51,11 +50,11 @@ public class SignUpDelegate extends LatteDelegate {
     void onClickSignUp(){
         if (checkForm()){
             RestClient.builder()
-                    //.url("sign_up")
-                    .params("name","111")
-                    .params("email","123@123.com")
-                    .params("phone","12345612345")
-                    .params("pawssword",123123)
+                    .url("http://192.168.2.14/RestServer/api/user_profile.php")
+                    .params("name",mName.getText().toString())
+                    .params("email",mEmail.getText().toString())
+                    .params("phone",mPhone.getText().toString())
+                    .params("pawssword",mPassword.getText().toString())
                     .success(new ISuccess() {
                         @Override
                         public void onSuccess(String response) {
@@ -66,7 +65,7 @@ public class SignUpDelegate extends LatteDelegate {
                     .build()
                     .post();
 
-           Toast.makeText(getContext(),mName.getText().toString(),Toast.LENGTH_LONG).show();
+          // Toast.makeText(getContext(),mName.getText().toString(),Toast.LENGTH_LONG).show();
         }
     }
 

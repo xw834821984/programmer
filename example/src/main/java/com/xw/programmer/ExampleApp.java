@@ -23,17 +23,25 @@ public class ExampleApp extends Application {
         Latte.init(this)
                 .withIcon(new FontAwesomeModule())
                 .withIcon(new FontEcModule())
-               .withApiHost("http://127.0.0.1/")
-                .withInterceptor(new DebugInterceptor("index",R.raw.test))
+                .withLoaderDelayed(1000)
+                .withApiHost("http://192.168.151.248:80/RestServer/api/")
+                .withInterceptor(new DebugInterceptor("test",R.raw.test))
                 //微信
                 .withWeChatAppId("")
                 .withWeChatAppSecret("")
                 .configure();
 
+
         DatabaseManager.getInstance().init(this);
         //初始化吐司工具
         AlertToast.init(this);
 
+
     }
+
+
+
+
+
 
 }

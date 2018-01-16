@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import com.xw.programmer.ec.R;
 import com.xw.programmer.ec.R2;
+import com.xw.programmer.ec.main.EcBottonDelegate;
 import com.xw.programmer_nucleus.delegetes.LatteDelegate;
 import com.xw.programmer_nucleus.net.Callback.ISuccess;
 import com.xw.programmer_nucleus.net.RestClient;
@@ -46,6 +47,7 @@ public class SignInDelegate extends LatteDelegate {
     void onClickSignIn(){
         if (checkForm()){
             RestClient.builder()
+                    .url("http://192.168.2.14/RestServer/api/user_profile.php")
                     .params("email",mEmail.getText().toString())
                     .params("pawssword",mPassword.getText().toString())
                     .success(new ISuccess() {
@@ -57,6 +59,8 @@ public class SignInDelegate extends LatteDelegate {
                     })
                     .build()
                     .post();
+            //登陆成功
+            startWithPop(new EcBottonDelegate());
 
            //  Toast.makeText(getContext(),"邮箱"+mEmail.getText().toString(),Toast.LENGTH_SHORT).show();
         }
@@ -69,7 +73,7 @@ public class SignInDelegate extends LatteDelegate {
 
             }
         }).signIn();
-            Toast.makeText(getContext(),"被点击" ,Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(),"微信被点击" ,Toast.LENGTH_SHORT).show();
     }
 
     @OnClick(R2.id.tv_link_sign_up)
