@@ -14,6 +14,7 @@ import android.view.View;
 import com.joanzapata.iconify.widget.IconTextView;
 import com.xw.programmer.ec.R;
 import com.xw.programmer.ec.R2;
+import com.xw.programmer.ec.main.EcBottonDelegate;
 import com.xw.programmer_nucleus.delegetes.bottom.BottomItemDelegate;
 import com.xw.programmer_nucleus.ui.recycler.BaseDecoration;
 import com.xw.programmer_nucleus.ui.refresh.RefreshHandler;
@@ -69,7 +70,15 @@ public class IndexDelegate extends BottomItemDelegate{
                 BaseDecoration.create(
                         ContextCompat.getColor(getContext(),R.color.app_background),5));
 
+        final EcBottonDelegate ecBottonDelegate = getParentDelegate();
+        mRecyclerView.addOnItemTouchListener(IndexItemClickListener.create(ecBottonDelegate));
     }
+
+
+
+
+
+
 
     @Override
     public void onLazyInitView(@Nullable Bundle savedInstanceState) {
