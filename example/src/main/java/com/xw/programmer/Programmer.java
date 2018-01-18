@@ -14,6 +14,8 @@ import com.xw.programmer_nucleus.delegetes.LatteDelegate;
 import com.xw.programmer_nucleus.ui.launcher.ILauncherListener;
 import com.xw.programmer_nucleus.ui.launcher.OnLauncherFinishTag;
 
+import qiu.niorgai.StatusBarCompat;
+
 public class Programmer extends ProxyActivitie implements
         ISignListener ,
         ILauncherListener{
@@ -27,6 +29,8 @@ public class Programmer extends ProxyActivitie implements
             actionBar.hide();
         }
         Latte.getConfigurator().withActivity(this);
+        //沉浸式状态栏
+        StatusBarCompat.translucentStatusBar(this,true);
 
     }
 
