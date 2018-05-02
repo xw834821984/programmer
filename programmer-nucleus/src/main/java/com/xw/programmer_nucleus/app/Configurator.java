@@ -2,9 +2,12 @@ package com.xw.programmer_nucleus.app;
 
 import android.app.Activity;
 import android.os.Handler;
+import android.support.annotation.NonNull;
 
 import com.joanzapata.iconify.IconFontDescriptor;
 import com.joanzapata.iconify.Iconify;
+import com.xw.programmer_nucleus.delegetes.web.event.Event;
+import com.xw.programmer_nucleus.delegetes.web.event.EventManager;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -115,6 +118,18 @@ public class Configurator {
         LATTE_CONFIGS.put(ConfigKeys.ACTIVITY, activity);
         return this;
     }
+
+    public Configurator withWebEvent(@NonNull String name, @NonNull Event event) {
+        final EventManager manager = EventManager.getInstance();
+        manager.addEvent(name, event);
+        return this;
+    }
+    public Configurator withJavascriptInterface(@NonNull String name) {
+        LATTE_CONFIGS.put(ConfigKeys.JAVASCRIPT_INTERFACE, name);
+        return this;
+    }
+
+
 
     private void checkConfiguration() {
         final boolean isReady = (boolean) LATTE_CONFIGS.get(ConfigKeys.CONFIG_READY);

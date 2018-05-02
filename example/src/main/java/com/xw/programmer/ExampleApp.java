@@ -5,6 +5,7 @@ import android.app.Application;
 import com.joanzapata.iconify.fonts.FontAwesomeModule;
 import com.xw.programmer.ec.database.DatabaseManager;
 import com.xw.programmer.ec.icon.FontEcModule;
+import com.xw.programmer.event.TestEvent;
 import com.xw.programmer_nucleus.app.Latte;
 import com.xw.programmer_nucleus.net.interceptors.DebugInterceptor;
 import com.xw.programmer_nucleus.util.AlertToast;
@@ -29,6 +30,8 @@ public class ExampleApp extends Application {
                 //微信
                 .withWeChatAppId("")
                 .withWeChatAppSecret("")
+                .withJavascriptInterface("latte")
+                .withWebEvent("test", new TestEvent())
                 .configure();
 
 

@@ -18,6 +18,8 @@
     <!--首页-->
     <string name="et_search_view">搜索</string>
 
+    <!--发现-->
+    <string name="discover">发现</string>
 
 
 </resources>

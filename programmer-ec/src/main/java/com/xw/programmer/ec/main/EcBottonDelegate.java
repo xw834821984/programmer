@@ -3,9 +3,9 @@ package com.xw.programmer.ec.main;
 import android.graphics.Color;
 
 import com.xw.programmer.ec.main.cart.CartDelegate;
-import com.xw.programmer.ec.main.compass.CompassDelegate;
 import com.xw.programmer.ec.main.index.IndexDelegate;
 import com.xw.programmer.ec.main.sort.SortDelegate;
+import com.xw.programmer.ec.main.discover.DiscoverDelegate;
 import com.xw.programmer.ec.main.user.UserDelegate;
 import com.xw.programmer_nucleus.delegetes.bottom.BaseBottomDelegate;
 import com.xw.programmer_nucleus.delegetes.bottom.BottomItemDelegate;
@@ -25,7 +25,7 @@ public class EcBottonDelegate extends BaseBottomDelegate {
         final LinkedHashMap<BottomTabBean, BottomItemDelegate> items = new LinkedHashMap<>();
         items.put(new BottomTabBean("{fa-home}", "主页"), new IndexDelegate());
         items.put(new BottomTabBean("{fa-sort}", "分类"), new SortDelegate());
-        items.put(new BottomTabBean("{fa-compass}", "发现"), new CompassDelegate());
+        items.put(new BottomTabBean("{fa-compass}", "发现"), new DiscoverDelegate());
         items.put(new BottomTabBean("{fa-shopping-cart}", "购物车"), new CartDelegate());
         items.put(new BottomTabBean("{fa-user}", "我的"), new UserDelegate());
         return builder.addItem(items).build();
